@@ -19,6 +19,7 @@ requirements:
   host:
     - pip
     - python {{ python_min }}
+    - setuptools
   run:
     - boto3 <=1.17.49
     - docker-py <=4.4.2
