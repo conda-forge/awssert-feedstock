@@ -7,18 +7,19 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/awssert-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/awssert-{{ version }}.tar.gz
   sha256: 261bab609a36bef04096c8ca777159e5b28e53c2473f215b406dc2444e0c9102
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
+    - setuptools
   run:
     - boto3 <=1.17.49
     - docker-py <=4.4.2
@@ -27,7 +28,7 @@ requirements:
     - moto
     - pyasn1
     - pytest <=6.2.3
-    - python >=3.6
+    - python >={{ python_min }}
     - python-dateutil <=2.8.1
     - rsa
     - werkzeug <2.0.0
@@ -40,6 +41,7 @@ test:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/TSNoble/awssert
